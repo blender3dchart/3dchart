@@ -15,32 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Blender 3D Chart.  If not, see <http://www.gnu.org/licenses/>.
 
+import bpy
+from bpy.types import Operator
 
-bl_info = {
-    "name": "3D Chart",
-    "author": "Donald Wong",
-    "version": (0, 0, 1),
-    "blender": (2, 80, 0),
-    "description": ("Generate 3D chart in one go"),
-    "category": "Mesh"
-}
+class chart_input(Operator):
+    bl_idname = "mesh.chart_input"
+    bl_label = "3D Chart"
 
-if "bpy" in locals():
-    import importlib
-    importlib.reload(ui)
-    importlib.reload(operators)
-else:
-    import bpy
-    from . import (ui,operators)
-
-def register():
-    bpy.utils.register_class(operators.chart_input)
-    bpy.types.VIEW3D_MT_mesh_add.append(ui.menu_func_chart)
-
-def unregister():
-    bpy.utils.unregister_class(operators.chart_input)
-    bpy.types.VIEW3D_MT_mesh_add.remove(ui.menu_func_chart)
-
-if __name__ == "__main__":
-    register()
-    
+    def execute(self, context):
+        print("3d chart operator")
+        return {'FINISHED'}
