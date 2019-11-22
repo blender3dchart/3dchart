@@ -31,7 +31,7 @@ if "bpy" in locals():
     importlib.reload(operators)
 else:
     import bpy
-    from . import (ui,operators)
+    from . import (ui, operators)
 
 def register():
     bpy.utils.register_class(operators.chart_input)

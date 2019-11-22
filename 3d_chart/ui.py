@@ -22,6 +22,6 @@ from . import operators
 def menu_func_chart(self, context):
     self.layout.operator(
         operators.chart_input.bl_idname,
-        text=operators.chart_input.bl_label,
+        text="3D Chart",
         icon="ALIGN_FLUSH"
     )

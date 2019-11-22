@@ -19,9 +19,14 @@ import bpy
 from bpy.types import Operator
 
 class chart_input(Operator):
-    bl_idname = "mesh.chart_input"
-    bl_label = "3D Chart"
+    bl_idname = "mesh.3dchart"
+    bl_label = "3D Chart Data Input"
+
+    text: bpy.props.StringProperty(name="Paste chart content:")
 
     def execute(self, context):
-        print("3d chart operator")
+        bpy.types.WorkSpace.status_text_set("3D chart ok")
         return {'FINISHED'}
+
+    def invoke(self, context, event):
+        return context.window_manager.invoke_props_dialog(self)
