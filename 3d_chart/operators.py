@@ -17,16 +17,21 @@
 
 import bpy
 from bpy.types import Operator
+from bpy.props import StringProperty
 
 class chart_input(Operator):
     bl_idname = "mesh.3dchart"
-    bl_label = "3D Chart Data Input"
+    bl_label = "Open 3D Chart file"
 
-    text: bpy.props.StringProperty(name="Paste chart content:")
+    filepath: StringProperty(
+            name="input file",
+            subtype='FILE_PATH'
+            )
 
     def execute(self, context):
-        bpy.types.WorkSpace.status_text_set("3D chart ok")
+        context.workspace.status_text_set("3D chart file:"+self.filepath)
         return {'FINISHED'}
 
     def invoke(self, context, event):
-        return context.window_manager.invoke_props_dialog(self)
+        context.window_manager.fileselect_add(self)
+        return {'RUNNING_MODAL'}
